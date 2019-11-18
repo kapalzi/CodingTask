@@ -73,6 +73,8 @@ public class Employee: NSManagedObject {
         let request: NSFetchRequest<Employee> = NSFetchRequest()
         let entity = NSEntityDescription.entity(forEntityName: "Employee", in: context)
         request.entity = entity
+        let sortDescriptor = NSSortDescriptor(key: "age", ascending: true)
+        request.sortDescriptors = [sortDescriptor]
         
         return request
     }
