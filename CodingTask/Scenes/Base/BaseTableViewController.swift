@@ -28,7 +28,7 @@ class BaseTableViewController: UIViewController {
     }
     
     @objc func save() {
-        
+        self.view.endEditing(true)
     }
     
     func initCell(_ cell: FormTableViewCell, indexPath: IndexPath) {

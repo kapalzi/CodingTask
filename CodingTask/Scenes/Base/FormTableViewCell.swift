@@ -1,5 +1,5 @@
 //
-//  EmployeeFormAddressTableViewCell.swift
+//  FormTableViewCell.swift
 //  CodingTask
 //
 //  Created by Krzysztof Kapała on 20/11/2019.
@@ -8,12 +8,12 @@
 
 import UIKit
 
-class EmployeeFormAddressTableViewCell: UITableViewCell {
+class FormTableViewCell: UITableViewCell {
 
     @IBOutlet var titleLbl: UILabel!
-
+    @IBOutlet var valueTextField: UITextField!
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         self.backgroundColor = .white
     }
-
 }

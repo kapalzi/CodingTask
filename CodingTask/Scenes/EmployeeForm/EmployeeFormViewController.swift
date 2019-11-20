@@ -26,6 +26,15 @@ class EmployeeFormViewController: BaseTableViewController {
 
         super.initCell(cell, indexPath: indexPath)
         
+        if self.viewModel.employee != nil {
+            self.initEditCell(cell, indexPath: indexPath)
+        } else {
+            self.initNewCell(cell, indexPath: indexPath)
+        }
+    }
+    
+    private func initNewCell(_ cell: FormTableViewCell, indexPath: IndexPath) {
+        
         switch indexPath.row {
         case 0:
             self.populateCell(cell, withTitle: "First name")
@@ -37,6 +46,27 @@ class EmployeeFormViewController: BaseTableViewController {
         case 3:
             self.populateCell(cell, withTitle: "Gender")
             cell.valueTextField.isEnabled = false
+        default:
+            cell.titleLbl.text = ""
+            cell.valueTextField.text = ""
+        }
+    }
+    
+    private func initEditCell(_ cell: FormTableViewCell, indexPath: IndexPath) {
+        
+        guard let employee = self.viewModel.employee else {
+            return
+        }
+        
+        switch indexPath.row {
+        case 0:
+            self.populateEditCell(cell, withTitle: "First name", withValue: employee.firstName ?? "")
+        case 1:
+            self.populateEditCell(cell, withTitle: "Last name", withValue: employee.lastName ?? "")
+        case 2:
+            self.populateEditCell(cell, withTitle: "Age", withValue: "\(employee.age)")
+        case 3:
+            self.populateEditCell(cell, withTitle: "Gender", withValue: "\(employee.gender)")
         default:
             cell.titleLbl.text = ""
             cell.valueTextField.text = ""
@@ -58,6 +88,7 @@ class EmployeeFormViewController: BaseTableViewController {
     }
     
     @objc override func save() {
+        super.save()
         self.viewModel.save {
             self.navigationController?.popViewController(animated: true)
         }
@@ -87,7 +118,7 @@ class EmployeeFormViewController: BaseTableViewController {
         let indexes = [0,1,2,9]
         for i in indexes {
             ac.addAction(UIAlertAction(title: Gender(rawValue: i)?.description, style: .default, handler: { (action) in
-                self.viewModel.age = Int16(i)
+                self.viewModel.gender = Int16(i)
                 if let genderTextField = self.view.viewWithTag(3) as? UITextField {
                     genderTextField.text = action.title
                 }

@@ -74,6 +74,7 @@ class AddressFormViewController: BaseTableViewController {
     }
     
     override func save() {
+        super.save()
         self.viewModel.save {
             self.navigationController?.popViewController(animated: true)
         }

@@ -10,16 +10,12 @@ import Foundation
 
 class EmployeeFormViewModel: BaseViewModel {
     
-    private var employee: Employee?
+    var employee: Employee?
     var firstName: String = ""
     var lastName: String = ""
     var age: Int16 = 0
     var gender: Int16 = 0
     var addresses: Set = Set<Address>()
-    
-    func setEmployee(_ employee: Employee) {
-        
-    }
     
     func getAddressAtIndex(_ index: Int) -> Address? {
         

@@ -43,8 +43,10 @@ class EmployeesListViewController: UIViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    private func showEmployeeDetails() {
-        
+    private func showDetails(ofEmployee employee: Employee) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "EmployeeFormViewController") as! EmployeeFormViewController
+        vc.viewModel.employee = employee
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
@@ -67,7 +69,7 @@ extension EmployeesListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        let deleteItem = UIContextualAction(style: .destructive, title: "deleteActionTitle") {  (contextualAction, view, boolValue) in
+        let deleteItem = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
             self.viewModel.deleteEmployee(index: indexPath.row) {
                 self.tableView.reloadData()
             }
@@ -78,13 +80,12 @@ extension EmployeesListViewController: UITableViewDataSource {
     }
 }
 
-
 extension EmployeesListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let employee = self.viewModel.employeeAtIndex(index: indexPath.row)
-        //go to employee details
+        self.showDetails(ofEmployee: employee)
     }
 }
 
