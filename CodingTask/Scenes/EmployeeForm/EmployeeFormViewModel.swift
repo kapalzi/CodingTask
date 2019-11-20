@@ -8,26 +8,18 @@
 
 import Foundation
 
-class EmployeeFormViewModel {
+protocol EmployeeFormViewModelDelegate {
+    func addAddress()
+}
+
+class EmployeeFormViewModel: BaseFormViewModel {
     
-    private var entryMode: EntryMode!
     private var employee: Employee?
     var firstName: String = ""
     var lastName: String = ""
     var age: Int16 = 0
     var gender: Int16 = 0
     var addresses: NSSet = NSSet()
-    
-    func setEntryMode(_ entryMode: EntryMode, completionHandler: @escaping (() -> Void)) {
-        
-        self.entryMode = entryMode
-        completionHandler()
-    }
-    
-    func setEntryMode(_ entryMode: EntryMode) {
-        
-        self.entryMode = entryMode
-    }
     
     func setEmployee(_ employee: Employee) {
         

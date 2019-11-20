@@ -9,9 +9,14 @@
 /* Begin PBXBuildFile section */
 		E255AD7823859875000C7533 /* EmployeeFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E255AD7723859875000C7533 /* EmployeeFormViewController.swift */; };
 		E255AD7A2385987C000C7533 /* EmployeeFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E255AD792385987C000C7533 /* EmployeeFormViewModel.swift */; };
-		E255AD7C238599A5000C7533 /* EmployeeFormTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E255AD7B238599A5000C7533 /* EmployeeFormTableViewCell.swift */; };
+		E255AD7C238599A5000C7533 /* EmployeeFormAddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E255AD7B238599A5000C7533 /* EmployeeFormAddressTableViewCell.swift */; };
 		E255AD7F2385C22A000C7533 /* EntryMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E255AD7E2385C22A000C7533 /* EntryMode.swift */; };
-		E255AD832385CF53000C7533 /* EmployeeFormAddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E255AD822385CF53000C7533 /* EmployeeFormAddressTableViewCell.swift */; };
+		E255AD882385D9BF000C7533 /* AddressFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E255AD872385D9BF000C7533 /* AddressFormViewController.swift */; };
+		E255AD8A2385D9E2000C7533 /* AddressFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E255AD892385D9E2000C7533 /* AddressFormViewModel.swift */; };
+		E255AD8C2385DB3D000C7533 /* EmployeeFormTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E255AD8B2385DB3D000C7533 /* EmployeeFormTableViewCell.swift */; };
+		E255AD8F2385DC43000C7533 /* BaseFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E255AD8E2385DC43000C7533 /* BaseFormViewModel.swift */; };
+		E255AD912385DD12000C7533 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E255AD902385DD12000C7533 /* BaseTableViewController.swift */; };
+		E255AD932385E5D9000C7533 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E255AD922385E5D9000C7533 /* BaseViewModel.swift */; };
 		E2CB221923834ABA009E035D /* Address+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CB221523834ABA009E035D /* Address+CoreDataClass.swift */; };
 		E2CB221D23834C6F009E035D /* Employee+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CB221B23834C6F009E035D /* Employee+CoreDataClass.swift */; };
 		E2CB222323835A12009E035D /* EmployeesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CB222223835A12009E035D /* EmployeesListViewModel.swift */; };
@@ -28,9 +33,14 @@
 /* Begin PBXFileReference section */
 		E255AD7723859875000C7533 /* EmployeeFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeFormViewController.swift; sourceTree = "<group>"; };
 		E255AD792385987C000C7533 /* EmployeeFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeFormViewModel.swift; sourceTree = "<group>"; };
-		E255AD7B238599A5000C7533 /* EmployeeFormTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeFormTableViewCell.swift; sourceTree = "<group>"; };
+		E255AD7B238599A5000C7533 /* EmployeeFormAddressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeFormAddressTableViewCell.swift; sourceTree = "<group>"; };
 		E255AD7E2385C22A000C7533 /* EntryMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryMode.swift; sourceTree = "<group>"; };
-		E255AD822385CF53000C7533 /* EmployeeFormAddressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeFormAddressTableViewCell.swift; sourceTree = "<group>"; };
+		E255AD872385D9BF000C7533 /* AddressFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressFormViewController.swift; sourceTree = "<group>"; };
+		E255AD892385D9E2000C7533 /* AddressFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressFormViewModel.swift; sourceTree = "<group>"; };
+		E255AD8B2385DB3D000C7533 /* EmployeeFormTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EmployeeFormTableViewCell.swift; path = ../EmployeeForm/EmployeeFormTableViewCell.swift; sourceTree = "<group>"; };
+		E255AD8E2385DC43000C7533 /* BaseFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseFormViewModel.swift; sourceTree = "<group>"; };
+		E255AD902385DD12000C7533 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
+		E255AD922385E5D9000C7533 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		E2CB221523834ABA009E035D /* Address+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Address+CoreDataClass.swift"; sourceTree = "<group>"; };
 		E2CB221B23834C6F009E035D /* Employee+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Employee+CoreDataClass.swift"; sourceTree = "<group>"; };
 		E2CB222223835A12009E035D /* EmployeesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeesListViewModel.swift; sourceTree = "<group>"; };
@@ -62,8 +72,7 @@
 			children = (
 				E255AD7723859875000C7533 /* EmployeeFormViewController.swift */,
 				E255AD792385987C000C7533 /* EmployeeFormViewModel.swift */,
-				E255AD7B238599A5000C7533 /* EmployeeFormTableViewCell.swift */,
-				E255AD822385CF53000C7533 /* EmployeeFormAddressTableViewCell.swift */,
+				E255AD7B238599A5000C7533 /* EmployeeFormAddressTableViewCell.swift */,
 			);
 			path = EmployeeForm;
 			sourceTree = "<group>";
@@ -76,11 +85,33 @@
 			path = Enums;
 			sourceTree = "<group>";
 		};
+		E255AD862385D97F000C7533 /* AddressForm */ = {
+			isa = PBXGroup;
+			children = (
+				E255AD872385D9BF000C7533 /* AddressFormViewController.swift */,
+				E255AD892385D9E2000C7533 /* AddressFormViewModel.swift */,
+			);
+			path = AddressForm;
+			sourceTree = "<group>";
+		};
+		E255AD8D2385DC27000C7533 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				E255AD922385E5D9000C7533 /* BaseViewModel.swift */,
+				E255AD8E2385DC43000C7533 /* BaseFormViewModel.swift */,
+				E255AD8B2385DB3D000C7533 /* EmployeeFormTableViewCell.swift */,
+				E255AD902385DD12000C7533 /* BaseTableViewController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 		E2CB222023835945009E035D /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				E255AD8D2385DC27000C7533 /* Base */,
 				E2CB2221238359FA009E035D /* EmployeesList */,
 				E255AD7623859859000C7533 /* EmployeeForm */,
+				E255AD862385D97F000C7533 /* AddressForm */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -209,17 +240,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2E98B092383407A00F40BEF /* EmployeesListViewController.swift in Sources */,
+				E255AD8C2385DB3D000C7533 /* EmployeeFormTableViewCell.swift in Sources */,
 				E255AD7F2385C22A000C7533 /* EntryMode.swift in Sources */,
 				E2CB221D23834C6F009E035D /* Employee+CoreDataClass.swift in Sources */,
+				E255AD912385DD12000C7533 /* BaseTableViewController.swift in Sources */,
+				E255AD932385E5D9000C7533 /* BaseViewModel.swift in Sources */,
+				E255AD8A2385D9E2000C7533 /* AddressFormViewModel.swift in Sources */,
+				E255AD8F2385DC43000C7533 /* BaseFormViewModel.swift in Sources */,
+				E255AD882385D9BF000C7533 /* AddressFormViewController.swift in Sources */,
 				E2CB222523835AE0009E035D /* EmployeesListTableViewCell.swift in Sources */,
 				E2E98B052383407A00F40BEF /* AppDelegate.swift in Sources */,
 				E2CB221923834ABA009E035D /* Address+CoreDataClass.swift in Sources */,
 				E2E98B0F2383407A00F40BEF /* CodingTask.xcdatamodeld in Sources */,
 				E2CB222323835A12009E035D /* EmployeesListViewModel.swift in Sources */,
 				E2E98B072383407A00F40BEF /* SceneDelegate.swift in Sources */,
-				E255AD832385CF53000C7533 /* EmployeeFormAddressTableViewCell.swift in Sources */,
 				E255AD7A2385987C000C7533 /* EmployeeFormViewModel.swift in Sources */,
-				E255AD7C238599A5000C7533 /* EmployeeFormTableViewCell.swift in Sources */,
+				E255AD7C238599A5000C7533 /* EmployeeFormAddressTableViewCell.swift in Sources */,
 				E255AD7823859875000C7533 /* EmployeeFormViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -367,6 +403,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W2457BUSA4;
 				INFOPLIST_FILE = CodingTask/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -385,6 +422,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W2457BUSA4;
 				INFOPLIST_FILE = CodingTask/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

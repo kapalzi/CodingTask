@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EmployeeFormViewController: UIViewController {
+class EmployeeFormViewController: BaseTableViewController {
     
     @IBOutlet var tableView: UITableView!
     let viewModel = EmployeeFormViewModel()
@@ -18,9 +18,9 @@ class EmployeeFormViewController: UIViewController {
         self.initControls()
     }
     
-    private func initCell(_ cell: EmployeeFormTableViewCell, indexPath: IndexPath) {
+    override func initCell(_ cell: FormTableViewCell, indexPath: IndexPath) {
 
-        cell.valueTextField.tag = indexPath.row
+        super.initCell(cell, indexPath: indexPath)
         
         switch indexPath.row {
         case 0:
@@ -48,22 +48,11 @@ class EmployeeFormViewController: UIViewController {
         }
     }
     
-    private func populateCell(_ cell: EmployeeFormTableViewCell, withTitle title: String) {
-
-        cell.titleLbl.text = title
-    }
-    
-    private func initControls() {
-        
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(saveEmployee))
-        self.navigationController?.navigationBar.topItem?.rightBarButtonItem = addButton
-    }
-    
     private func isLastCell(atRow row: Int) -> Bool {
         return self.tableView.numberOfRows(inSection: 0) == row + 1
     }
     
-    @objc private func saveEmployee() {
+    @objc override func save() {
         
     }
 }
@@ -85,9 +74,9 @@ extension EmployeeFormViewController: UITableViewDataSource {
             return cell
         }
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "EmployeeFormTableViewCell",
-                                                 for: indexPath) as? EmployeeFormTableViewCell ??
-            EmployeeFormTableViewCell(style: .default, reuseIdentifier: "EmployeeFormTableViewCell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FormTableViewCell",
+                                                 for: indexPath) as? FormTableViewCell ??
+            FormTableViewCell(style: .default, reuseIdentifier: "FormTableViewCell")
 
         self.initCell(cell, indexPath: indexPath)
         return cell
@@ -104,7 +93,10 @@ extension EmployeeFormViewController: UITableViewDelegate {
         }
         
         if self.isLastCell(atRow: indexPath.row) {
-            //go to add address
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "AddressFormViewController") as! AddressFormViewController
+            vc.viewModel.setEntryMode(.create)
+            
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
 }

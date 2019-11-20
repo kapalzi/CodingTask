@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EmployeeFormTableViewCell: UITableViewCell {
+class FormTableViewCell: UITableViewCell {
 
     @IBOutlet var titleLbl: UILabel!
     @IBOutlet var valueTextField: UITextField!
@@ -17,6 +17,10 @@ class EmployeeFormTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        self.backgroundColor = .white
     }
     
     func toggleTextField() {

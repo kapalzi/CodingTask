@@ -5,9 +5,9 @@
 //  Created by Krzysztof Kapała on 19/11/2019.
 //  Copyright © 2019 Krzysztof Kapała. All rights reserved.
 //
-import UIKit
+import Foundation
 
-class EmployeesListViewModel {
+class EmployeesListViewModel: BaseViewModel {
     
     private var employees: [Employee]!
     
@@ -38,9 +38,5 @@ class EmployeesListViewModel {
     func employeeAtIndex(index: Int) -> Employee {
         
         return self.employees[index]
-    }
-    
-    private func appDelegate() -> AppDelegate {
-        return (UIApplication.shared.delegate as! AppDelegate)
     }
 }
