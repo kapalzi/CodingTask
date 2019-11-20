@@ -13,7 +13,6 @@ class EmployeesListViewController: UIViewController {
     private let viewModel: EmployeesListViewModel = EmployeesListViewModel()
     @IBOutlet var tableView: UITableView!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initControls()
@@ -40,13 +39,12 @@ class EmployeesListViewController: UIViewController {
     
     @objc private func showAddEmployee() {
         
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "EmployeeFormViewController") as! EmployeeFormViewController
+        vc.viewModel.setEntryMode(.create)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     private func showEmployeeDetails() {
-        
-    }
-    
-    private func showEmployeeEdit() {
         
     }
 }
@@ -70,16 +68,12 @@ extension EmployeesListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        let editAction = UIContextualAction(style: .normal, title: "Edit") { (contextualAction, view, boolValue) in
-            //edit vm
-        }
-        
         let deleteItem = UIContextualAction(style: .destructive, title: "deleteActionTitle") {  (contextualAction, view, boolValue) in
             self.viewModel.deleteEmployee(index: indexPath.row) {
                 self.tableView.reloadData()
             }
         }
-        let swipeActions = UISwipeActionsConfiguration(actions: [editAction, deleteItem])
+        let swipeActions = UISwipeActionsConfiguration(actions: [deleteItem])
 
         return swipeActions
     }
