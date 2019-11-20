@@ -36,6 +36,7 @@ class EmployeeFormViewController: BaseTableViewController {
             cell.valueTextField.isEnabled = false
         case 3:
             self.populateCell(cell, withTitle: "Gender")
+            cell.valueTextField.isEnabled = false
         default:
             cell.titleLbl.text = ""
             cell.valueTextField.text = ""
@@ -60,6 +61,28 @@ class EmployeeFormViewController: BaseTableViewController {
         self.viewModel.save {
             self.navigationController?.popViewController(animated: true)
         }
+    }
+    
+    private func showAgeAlert() {
+
+        let ac = UIAlertController(title: "Please enter age", message: nil, preferredStyle: .alert)
+        ac.addTextField { (textField) in
+            textField.keyboardType = .numberPad
+        }
+        
+        ac.addAction(UIAlertAction(title: "Save", style: .destructive, handler: { (_) in
+            let textField = ac.textFields![0] as UITextField
+            self.viewModel.age = Int16(textField.text ?? "0") ?? 0
+            if let ageTextField = self.view.viewWithTag(2) as? UITextField {
+                ageTextField.text = textField.text
+            }
+        }))
+        self.startAlertWithCancel(ac: ac)
+    }
+    
+    private func startAlertWithCancel(ac: UIAlertController) {
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(ac, animated: true, completion: nil)
     }
 }
 
@@ -95,7 +118,11 @@ extension EmployeeFormViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if indexPath.row == 2 {
-            //show age
+            self.showAgeAlert()
+        }
+        
+        if indexPath.row == 3 {
+            //show gender
         }
         
         if self.isLastCell(atRow: indexPath.row) {
