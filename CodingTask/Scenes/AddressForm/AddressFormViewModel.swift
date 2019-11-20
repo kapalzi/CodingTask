@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol AddressFormViewModelDelegate: AnyObject {
+    func addAddress(_ address: Address)
+}
+
 class AddressFormViewModel: BaseFormViewModel {
     
     private var address: Address?
@@ -17,11 +21,12 @@ class AddressFormViewModel: BaseFormViewModel {
     var houseNumber: String = ""
     var flatNumber: String = ""
     var postcode: String = ""
+    weak var delegate: AddressFormViewModelDelegate?
     
     func save(completionHandler: @escaping (() -> Void)) {
         
         let context = self.appDelegate().persistentContainer.viewContext
-        Address.createAddress(country: self.country,
+        let address = Address.createAddress(country: self.country,
                                             locality: self.country,
                                             street: self.street,
                                             houseNumber: self.houseNumber,
@@ -30,6 +35,7 @@ class AddressFormViewModel: BaseFormViewModel {
                                             inContext: context)
         
         self.appDelegate().saveContext()
+        self.delegate?.addAddress(address)
         completionHandler()
     }
 }

@@ -8,10 +8,6 @@
 
 import Foundation
 
-protocol EmployeeFormViewModelDelegate {
-    func addAddress()
-}
-
 class EmployeeFormViewModel: BaseFormViewModel {
     
     private var employee: Employee?
@@ -19,7 +15,7 @@ class EmployeeFormViewModel: BaseFormViewModel {
     var lastName: String = ""
     var age: Int16 = 0
     var gender: Int16 = 0
-    var addresses: NSSet = NSSet()
+    var addresses: Set = Set<Address>()
     
     func setEmployee(_ employee: Employee) {
         
@@ -27,5 +23,29 @@ class EmployeeFormViewModel: BaseFormViewModel {
     
     func getAddressesCount() -> Int {
         return self.addresses.count
+    }
+    
+    func save(completionHandler: @escaping (() -> Void)) {
+        
+        let context = self.appDelegate().persistentContainer.viewContext
+        
+        let employee = Employee.createEmployee(firstName: self.firstName,
+                                               lastName: self.lastName,
+                                               age: self.age,
+                                               gender: self.gender,
+                                               addresses: NSSet(set: self.addresses),
+                                               context: context)
+        
+        self.addresses.forEach { $0.addEmployee(employee)}
+        self.appDelegate().saveContext()
+        
+        completionHandler()
+    }
+}
+
+extension EmployeeFormViewModel: AddressFormViewModelDelegate {
+    
+    func addAddress(_ address: Address) {
+        self.addresses.insert(address)
     }
 }

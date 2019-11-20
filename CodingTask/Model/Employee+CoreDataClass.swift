@@ -13,15 +13,16 @@ import CoreData
 @objc(Employee)
 public class Employee: NSManagedObject {
 
-    static func createEmployee(id: Int16, firstName: String, lastName: String, age: Int16, gender: Int16, addresses: NSSet, context: NSManagedObjectContext) {
+    static func createEmployee(firstName: String, lastName: String, age: Int16, gender: Int16, addresses: NSSet, context: NSManagedObjectContext) -> Employee {
         
         let newEmployee = NSEntityDescription.insertNewObject(forEntityName: "Employee", into: context) as! Employee
-        newEmployee.id = id
+        newEmployee.id = self.getNextIndex(inContext: context)
         newEmployee.firstName = firstName
         newEmployee.lastName = lastName
         newEmployee.age = age
         newEmployee.gender = gender
         newEmployee.addresses = addresses
+        return newEmployee
     }
     
     static func getEmployee(forId id: Int16, inContext context: NSManagedObjectContext) -> Employee? {
@@ -77,5 +78,14 @@ public class Employee: NSManagedObject {
         request.sortDescriptors = [sortDescriptor]
         
         return request
+    }
+    
+    private static func getNextIndex(inContext context: NSManagedObjectContext) -> Int16 {
+        
+        if let employees = self.getAllEmployees(inContext: context) {
+            return Int16(employees.count)
+        } else {
+            return 0
+        }
     }
 }

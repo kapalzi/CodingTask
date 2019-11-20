@@ -17,6 +17,7 @@ class EmployeesListViewModel: BaseViewModel {
         
         if let employees = Employee.getAllEmployees(inContext: context) {
             self.employees = employees
+            completionHandler()
         }
     }
     

@@ -17,7 +17,7 @@ class BaseTableViewController: UIViewController {
     
     func initControls() {
         
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(save))
+        let addButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(save))
         self.navigationItem.rightBarButtonItem = addButton
     }
     

@@ -18,6 +18,10 @@ class EmployeeFormViewController: BaseTableViewController {
         self.initControls()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        self.tableView.reloadData()
+    }
+    
     override func initCell(_ cell: FormTableViewCell, indexPath: IndexPath) {
 
         super.initCell(cell, indexPath: indexPath)
@@ -40,7 +44,7 @@ class EmployeeFormViewController: BaseTableViewController {
     
     private func initAddressCell(_ cell: EmployeeFormAddressTableViewCell, indexPath: IndexPath) {
 
-        let addressNumber = indexPath.row - self.viewModel.getAddressesCount() - 1
+        let addressNumber = indexPath.row - self.viewModel.getAddressesCount() - 2
         if self.isLastCell(atRow: indexPath.row) {
             cell.titleLbl.text = "Add Address"
         } else {
@@ -53,7 +57,9 @@ class EmployeeFormViewController: BaseTableViewController {
     }
     
     @objc override func save() {
-        
+        self.viewModel.save {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 }
 
@@ -95,7 +101,7 @@ extension EmployeeFormViewController: UITableViewDelegate {
         if self.isLastCell(atRow: indexPath.row) {
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "AddressFormViewController") as! AddressFormViewController
             vc.viewModel.setEntryMode(.create)
-            
+            vc.viewModel.delegate = self.viewModel
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
