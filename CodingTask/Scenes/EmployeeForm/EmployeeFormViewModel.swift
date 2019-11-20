@@ -8,7 +8,7 @@
 
 import Foundation
 
-class EmployeeFormViewModel: BaseFormViewModel {
+class EmployeeFormViewModel: BaseViewModel {
     
     private var employee: Employee?
     var firstName: String = ""
@@ -19,6 +19,15 @@ class EmployeeFormViewModel: BaseFormViewModel {
     
     func setEmployee(_ employee: Employee) {
         
+    }
+    
+    func getAddressAtIndex(_ index: Int) -> Address? {
+        
+        if addresses.count > 0 && index > 3 {
+            return addresses[addresses.index(addresses.startIndex, offsetBy: index - 4)]
+        } else {
+            return nil
+        }
     }
     
     func getAddressesCount() -> Int {

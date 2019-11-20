@@ -40,7 +40,6 @@ class EmployeesListViewController: UIViewController {
     @objc private func showAddEmployee() {
         
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "EmployeeFormViewController") as! EmployeeFormViewController
-        vc.viewModel.setEntryMode(.create)
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

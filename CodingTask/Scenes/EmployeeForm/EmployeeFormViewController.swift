@@ -45,7 +45,7 @@ class EmployeeFormViewController: BaseTableViewController {
     
     private func initAddressCell(_ cell: EmployeeFormAddressTableViewCell, indexPath: IndexPath) {
 
-        let addressNumber = indexPath.row - self.viewModel.getAddressesCount() - 2
+        let addressNumber = indexPath.row - 3
         if self.isLastCell(atRow: indexPath.row) {
             cell.titleLbl.text = "Add Address"
         } else {
@@ -77,6 +77,22 @@ class EmployeeFormViewController: BaseTableViewController {
                 ageTextField.text = textField.text
             }
         }))
+        self.startAlertWithCancel(ac: ac)
+    }
+    
+    private func showGenderAlert() {
+
+        let ac = UIAlertController(title: "Please select gender", message: nil, preferredStyle: .alert)
+
+        let indexes = [0,1,2,9]
+        for i in indexes {
+            ac.addAction(UIAlertAction(title: Gender(rawValue: i)?.description, style: .default, handler: { (action) in
+                self.viewModel.age = Int16(i)
+                if let genderTextField = self.view.viewWithTag(3) as? UITextField {
+                    genderTextField.text = action.title
+                }
+            }))
+        }
         self.startAlertWithCancel(ac: ac)
     }
     
@@ -122,12 +138,18 @@ extension EmployeeFormViewController: UITableViewDelegate {
         }
         
         if indexPath.row == 3 {
-            //show gender
+            self.showGenderAlert()
         }
         
         if self.isLastCell(atRow: indexPath.row) {
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "AddressFormViewController") as! AddressFormViewController
-            vc.viewModel.setEntryMode(.create)
+            vc.viewModel.delegate = self.viewModel
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
+        if indexPath.row > 3 && !self.isLastCell(atRow: indexPath.row) {
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "AddressFormViewController") as! AddressFormViewController
+            vc.viewModel.address = self.viewModel.getAddressAtIndex(indexPath.row)
             vc.viewModel.delegate = self.viewModel
             self.navigationController?.pushViewController(vc, animated: true)
         }

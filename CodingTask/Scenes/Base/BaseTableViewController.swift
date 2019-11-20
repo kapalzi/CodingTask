@@ -15,6 +15,12 @@ class BaseTableViewController: UIViewController {
         cell.titleLbl.text = title
     }
     
+    func populateEditCell(_ cell: FormTableViewCell, withTitle title: String, withValue value: String) {
+
+        cell.titleLbl.text = title
+        cell.valueTextField.text = value
+    }
+    
     func initControls() {
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(save))

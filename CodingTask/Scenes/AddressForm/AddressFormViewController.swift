@@ -15,12 +15,20 @@ class AddressFormViewController: BaseTableViewController {
     
     override func viewDidLoad() {
             self.initControls()
-        }
+    }
         
     override func initCell(_ cell: FormTableViewCell, indexPath: IndexPath) {
 
         super.initCell(cell, indexPath: indexPath)
         
+        if self.viewModel.address != nil {
+            self.initEditCell(cell, indexPath: indexPath)
+        } else {
+            self.initNewCell(cell, indexPath: indexPath)
+        }
+    }
+    
+    private func initNewCell(_ cell: FormTableViewCell, indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
             self.populateCell(cell, withTitle: "Country")
@@ -34,6 +42,31 @@ class AddressFormViewController: BaseTableViewController {
             self.populateCell(cell, withTitle: "Flat number")
         case 5:
             self.populateCell(cell, withTitle: "Postcode")
+        default:
+            cell.titleLbl.text = ""
+            cell.valueTextField.text = ""
+        }
+    }
+    
+    private func initEditCell(_ cell: FormTableViewCell, indexPath: IndexPath) {
+        
+        guard let address = self.viewModel.address else {
+            return
+        }
+        
+        switch indexPath.row {
+        case 0:
+            self.populateEditCell(cell, withTitle: "Country", withValue: address.country ?? "")
+        case 1:
+            self.populateEditCell(cell, withTitle: "Locality", withValue: address.locality ?? "")
+        case 2:
+            self.populateEditCell(cell, withTitle: "Street", withValue: address.street ?? "")
+        case 3:
+            self.populateEditCell(cell, withTitle: "House number", withValue: address.houseNumber ?? "")
+        case 4:
+            self.populateEditCell(cell, withTitle: "Flat number", withValue: address.flatNumber ?? "")
+        case 5:
+            self.populateEditCell(cell, withTitle: "Postcode", withValue: address.postcode ?? "")
         default:
             cell.titleLbl.text = ""
             cell.valueTextField.text = ""

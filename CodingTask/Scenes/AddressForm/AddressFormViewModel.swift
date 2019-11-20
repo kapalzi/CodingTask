@@ -12,9 +12,9 @@ protocol AddressFormViewModelDelegate: AnyObject {
     func addAddress(_ address: Address)
 }
 
-class AddressFormViewModel: BaseFormViewModel {
+class AddressFormViewModel: BaseViewModel {
     
-    private var address: Address?
+    var address: Address?
     var country: String = ""
     var locality: String = ""
     var street: String = ""
@@ -33,8 +33,6 @@ class AddressFormViewModel: BaseFormViewModel {
                                             flatNumber: self.flatNumber,
                                             postcode: self.postcode,
                                             inContext: context)
-        
-        self.appDelegate().saveContext()
         self.delegate?.addAddress(address)
         completionHandler()
     }
