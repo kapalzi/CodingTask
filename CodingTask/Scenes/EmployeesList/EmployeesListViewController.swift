@@ -15,10 +15,10 @@ class EmployeesListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.initControls()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.initControls()
         self.viewModel.getAllEmployees {
             self.tableView.reloadData()
         }
@@ -27,7 +27,7 @@ class EmployeesListViewController: UIViewController {
     private func initControls() {
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(showAddEmployee))
-        self.navigationController?.navigationBar.topItem?.rightBarButtonItem = addButton
+        self.navigationItem.rightBarButtonItem = addButton
     }
     
     private func initCell(_ cell: EmployeesListTableViewCell, indexPath: IndexPath) {

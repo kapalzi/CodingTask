@@ -12,6 +12,11 @@ class EmployeeFormViewModel {
     
     private var entryMode: EntryMode!
     private var employee: Employee?
+    var firstName: String = ""
+    var lastName: String = ""
+    var age: Int16 = 0
+    var gender: Int16 = 0
+    var addresses: NSSet = NSSet()
     
     func setEntryMode(_ entryMode: EntryMode, completionHandler: @escaping (() -> Void)) {
         
@@ -26,5 +31,9 @@ class EmployeeFormViewModel {
     
     func setEmployee(_ employee: Employee) {
         
+    }
+    
+    func getAddressesCount() -> Int {
+        return self.addresses.count
     }
 }

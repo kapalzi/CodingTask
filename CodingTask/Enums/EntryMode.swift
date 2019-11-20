@@ -11,5 +11,4 @@ import Foundation
 enum EntryMode:Int {
     case create = 0
     case edit = 1
-    case preview = 2
 }

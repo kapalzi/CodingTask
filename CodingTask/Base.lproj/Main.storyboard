@@ -125,6 +125,9 @@
                                                     <rect key="frame" x="211" y="11" width="183" height="48"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="19"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="Jgd-Nj-FXX" id="pjZ-TE-irx"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -142,6 +145,31 @@
                                         <connections>
                                             <outlet property="titleLbl" destination="GQw-bX-LNH" id="NGd-jZ-ceF"/>
                                             <outlet property="valueTextField" destination="382-q6-qv1" id="PUo-n4-4F3"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EmployeeFormAddressTableViewCell" rowHeight="70" id="ZGZ-mW-NBW" customClass="EmployeeFormAddressTableViewCell" customModule="CodingTask" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="98" width="414" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZGZ-mW-NBW" id="M89-K4-0hA">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RNs-b2-0ha">
+                                                    <rect key="frame" x="31" y="22" width="352" height="26"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="19"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="RNs-b2-0ha" firstAttribute="top" secondItem="M89-K4-0hA" secondAttribute="topMargin" constant="11" id="UVQ-sF-XIs"/>
+                                                <constraint firstItem="RNs-b2-0ha" firstAttribute="leading" secondItem="M89-K4-0hA" secondAttribute="leadingMargin" constant="11" id="Uid-A9-9hl"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="RNs-b2-0ha" secondAttribute="bottom" constant="11" id="gS8-qF-M93"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="RNs-b2-0ha" secondAttribute="trailing" constant="11" id="yXo-6b-U7c"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="titleLbl" destination="RNs-b2-0ha" id="4ua-KJ-B2I"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
