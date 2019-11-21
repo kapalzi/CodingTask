@@ -21,6 +21,17 @@ class EmployeesListViewModel: BaseViewModel {
         }
     }
     
+    func getEmployee(forId id: Int16, completionHandler: @escaping ((_ employee: Employee) -> Void), errorHandler: @escaping ((_ error: String) -> Void)) {
+        
+         let context = appDelegate().persistentContainer.viewContext
+        
+        if let employee = Employee.getEmployee(forId: id, inContext: context) {
+            completionHandler(employee)
+        } else {
+            errorHandler("No employee with given index!")
+        }
+    }
+    
     func deleteEmployee(index: Int, completionHandler: @escaping (() -> Void)) {
         
         let employee = self.employeeAtIndex(index: index)

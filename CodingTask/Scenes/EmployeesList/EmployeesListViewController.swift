@@ -45,9 +45,44 @@ class EmployeesListViewController: UIViewController {
     
     private func showDetails(ofEmployee employee: Employee) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "EmployeeFormViewController") as! EmployeeFormViewController
-        vc.viewModel.employee = employee
+        vc.viewModel.setValuesFromEmployee(employee)
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    private func showErrorAlert(withMessage message: String) {
+
+        let ac = UIAlertController(title: message, message: nil, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+
+        self.present(ac, animated: true, completion: nil)
+    }
+    
+    private func showAgeAlert() {
+
+        let ac = UIAlertController(title: "Enter employee id", message: nil, preferredStyle: .alert)
+        ac.addTextField { (textField) in
+            textField.keyboardType = .numberPad
+        }
+        
+        ac.addAction(UIAlertAction(title: "Select", style: .destructive, handler: { (_) in
+            let textField = ac.textFields![0] as UITextField
+            
+            self.viewModel.getEmployee(forId: Int16(textField.text ?? "0") ?? 0, completionHandler: { (employee) in
+                self.showDetails(ofEmployee: employee)
+            }) { (errorMessage) in
+                self.showErrorAlert(withMessage: errorMessage)
+            }
+        }))
+
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(ac, animated: true, completion: nil)
+    }
+    
+    @IBAction func searchDidTap(_ sender: UIBarButtonItem) {
+        
+        self.showAgeAlert()
+    }
+    
 }
 
 extension EmployeesListViewController: UITableViewDataSource {

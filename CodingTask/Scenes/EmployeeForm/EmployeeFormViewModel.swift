@@ -30,10 +30,27 @@ class EmployeeFormViewModel: BaseViewModel {
         return self.addresses.count
     }
     
+    func setValuesFromEmployee(_ employee: Employee) {
+        self.employee = employee
+        self.firstName = employee.firstName ?? ""
+        self.lastName = employee.lastName ?? ""
+        self.age = employee.age
+        self.gender = employee.gender
+        self.addresses = employee.addresses as! Set<Address>
+    }
+    
     func save(completionHandler: @escaping (() -> Void)) {
         
-        let context = self.appDelegate().persistentContainer.viewContext
+        if let employee = self.employee {
+            self.updateEmployee(employee, completionHandler: completionHandler)
+        } else {
+            self.saveNew(completionHandler: completionHandler)
+        }
+    }
+    
+    func saveNew(completionHandler: @escaping (() -> Void)) {
         
+        let context = self.appDelegate().persistentContainer.viewContext
         let employee = Employee.createEmployee(firstName: self.firstName,
                                                lastName: self.lastName,
                                                age: self.age,
@@ -42,6 +59,14 @@ class EmployeeFormViewModel: BaseViewModel {
                                                context: context)
         
         self.addresses.forEach { $0.addEmployee(employee)}
+        self.appDelegate().saveContext()
+        
+        completionHandler()
+    }
+    
+    func updateEmployee(_ employee: Employee, completionHandler: @escaping (() -> Void)) {
+        
+        employee.update(firstName: self.firstName, lastName: self.lastName, age: self.age, gender: self.gender, addresses: NSSet(set: self.addresses))
         self.appDelegate().saveContext()
         
         completionHandler()

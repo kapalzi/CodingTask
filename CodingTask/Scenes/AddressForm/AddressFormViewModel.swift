@@ -23,7 +23,27 @@ class AddressFormViewModel: BaseViewModel {
     var postcode: String = ""
     weak var delegate: AddressFormViewModelDelegate?
     
+    func setValuesFromAddress(_ address: Address) {
+        
+        self.address = address
+        self.country = address.country ?? ""
+        self.locality = address.locality ?? ""
+        self.street = address.street ?? ""
+        self.houseNumber = address.houseNumber ?? ""
+        self.flatNumber = address.flatNumber ?? ""
+        self.postcode = address.postcode ?? ""
+    }
+    
     func save(completionHandler: @escaping (() -> Void)) {
+        
+        if let address = self.address {
+            self.updateAddress(address, completionHandler: completionHandler)
+        } else {
+            self.saveNew(completionHandler: completionHandler)
+        }
+    }
+    
+    func saveNew(completionHandler: @escaping (() -> Void)) {
         
         let context = self.appDelegate().persistentContainer.viewContext
         let address = Address.createAddress(country: self.country,
@@ -34,6 +54,19 @@ class AddressFormViewModel: BaseViewModel {
                                             postcode: self.postcode,
                                             inContext: context)
         self.delegate?.addAddress(address)
+        completionHandler()
+    }
+    
+    func updateAddress(_ address: Address, completionHandler: @escaping (() -> Void)) {
+        
+        address.update(country: self.country,
+                       locality: self.locality,
+                       street: self.street,
+                       houseNumber: self.houseNumber,
+                       flatNumber: self.flatNumber,
+                       postcode: self.postcode)
+        self.appDelegate().saveContext()
+        
         completionHandler()
     }
 }

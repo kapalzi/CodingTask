@@ -65,8 +65,10 @@ class EmployeeFormViewController: BaseTableViewController {
             self.populateEditCell(cell, withTitle: "Last name", withValue: employee.lastName ?? "")
         case 2:
             self.populateEditCell(cell, withTitle: "Age", withValue: "\(employee.age)")
+            cell.valueTextField.isEnabled = false
         case 3:
-            self.populateEditCell(cell, withTitle: "Gender", withValue: "\(employee.gender)")
+            self.populateEditCell(cell, withTitle: "Gender", withValue: Gender(rawValue: Int(employee.gender))?.description ?? "unknown")
+            cell.valueTextField.isEnabled = false
         default:
             cell.titleLbl.text = ""
             cell.valueTextField.text = ""
@@ -179,8 +181,12 @@ extension EmployeeFormViewController: UITableViewDelegate {
         }
         
         if indexPath.row > 3 && !self.isLastCell(atRow: indexPath.row) {
+            
+            guard let address = self.viewModel.getAddressAtIndex(indexPath.row) else { return }
+            
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "AddressFormViewController") as! AddressFormViewController
-            vc.viewModel.address = self.viewModel.getAddressAtIndex(indexPath.row)
+
+            vc.viewModel.setValuesFromAddress(address)
             vc.viewModel.delegate = self.viewModel
             self.navigationController?.pushViewController(vc, animated: true)
         }
