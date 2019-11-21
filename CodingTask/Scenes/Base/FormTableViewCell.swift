@@ -12,7 +12,7 @@ class FormTableViewCell: UITableViewCell {
 
     @IBOutlet var titleLbl: UILabel!
     @IBOutlet var valueTextField: UITextField!
-    
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         self.backgroundColor = .white
     }

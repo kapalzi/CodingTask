@@ -13,7 +13,7 @@ protocol AddressFormViewModelDelegate: AnyObject {
 }
 
 class AddressFormViewModel: BaseViewModel {
-    
+
     var address: Address?
     var country: String = ""
     var locality: String = ""
@@ -22,9 +22,9 @@ class AddressFormViewModel: BaseViewModel {
     var flatNumber: String = ""
     var postcode: String = ""
     weak var delegate: AddressFormViewModelDelegate?
-    
+
     func setValuesFromAddress(_ address: Address) {
-        
+
         self.address = address
         self.country = address.country ?? ""
         self.locality = address.locality ?? ""
@@ -33,18 +33,18 @@ class AddressFormViewModel: BaseViewModel {
         self.flatNumber = address.flatNumber ?? ""
         self.postcode = address.postcode ?? ""
     }
-    
+
     func save(completionHandler: @escaping (() -> Void)) {
-        
+
         if let address = self.address {
             self.updateAddress(address, completionHandler: completionHandler)
         } else {
             self.saveNew(completionHandler: completionHandler)
         }
     }
-    
+
     func saveNew(completionHandler: @escaping (() -> Void)) {
-        
+
         let context = self.appDelegate().persistentContainer.viewContext
         let address = Address.createAddress(country: self.country,
                                             locality: self.country,
@@ -56,9 +56,9 @@ class AddressFormViewModel: BaseViewModel {
         self.delegate?.addAddress(address)
         completionHandler()
     }
-    
+
     func updateAddress(_ address: Address, completionHandler: @escaping (() -> Void)) {
-        
+
         address.update(country: self.country,
                        locality: self.locality,
                        street: self.street,
@@ -66,7 +66,7 @@ class AddressFormViewModel: BaseViewModel {
                        flatNumber: self.flatNumber,
                        postcode: self.postcode)
         self.appDelegate().saveContext()
-        
+
         completionHandler()
     }
 }

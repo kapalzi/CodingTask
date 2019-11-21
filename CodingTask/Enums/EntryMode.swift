@@ -8,12 +8,11 @@
 
 import Foundation
 
-enum EntryMode:Int {
+enum EntryMode: Int {
     case create = 0
     case edit = 1
-    
-    public func isEditMode() -> Bool
-    {
+
+    public func isEditMode() -> Bool {
         return self == .edit
     }
 }

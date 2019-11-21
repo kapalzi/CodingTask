@@ -10,12 +10,12 @@
 import Foundation
 
 enum Gender: Int {
-    
+
     case notKnown = 0
     case male = 1
     case female = 2
     case notApplicable = 9
-    
+
     var description: String {
         switch self {
         case .notKnown:

@@ -10,7 +10,6 @@ import UIKit
 
 class EmployeesListTableViewCell: UITableViewCell {
 
-    
     @IBOutlet var nameLbl: UILabel!
     @IBOutlet var ageLbl: UILabel!
 }

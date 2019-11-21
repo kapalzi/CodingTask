@@ -9,7 +9,7 @@
 import UIKit
 
 class BaseViewModel {
-    
+
     func appDelegate() -> AppDelegate {
         return (UIApplication.shared.delegate as! AppDelegate)
     }

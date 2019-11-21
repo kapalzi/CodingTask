@@ -9,25 +9,25 @@
 import UIKit
 
 class AddressFormViewController: BaseTableViewController {
-    
+
     @IBOutlet var tableView: UITableView!
     let viewModel = AddressFormViewModel()
-    
+
     override func viewDidLoad() {
             self.initControls()
     }
-        
+
     override func initCell(_ cell: FormTableViewCell, indexPath: IndexPath) {
 
         super.initCell(cell, indexPath: indexPath)
-        
+
         if self.viewModel.address != nil {
             self.initEditCell(cell, indexPath: indexPath)
         } else {
             self.initNewCell(cell, indexPath: indexPath)
         }
     }
-    
+
     private func initNewCell(_ cell: FormTableViewCell, indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
@@ -47,13 +47,13 @@ class AddressFormViewController: BaseTableViewController {
             cell.valueTextField.text = ""
         }
     }
-    
+
     private func initEditCell(_ cell: FormTableViewCell, indexPath: IndexPath) {
-        
+
         guard let address = self.viewModel.address else {
             return
         }
-        
+
         switch indexPath.row {
         case 0:
             self.populateEditCell(cell, withTitle: "Country", withValue: address.country ?? "")
@@ -72,7 +72,7 @@ class AddressFormViewController: BaseTableViewController {
             cell.valueTextField.text = ""
         }
     }
-    
+
     override func save() {
         super.save()
         self.viewModel.save {
@@ -82,13 +82,13 @@ class AddressFormViewController: BaseTableViewController {
 }
 
 extension AddressFormViewController: UITableViewDataSource {
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 6
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+
         let cell = tableView.dequeueReusableCell(withIdentifier: "FormTableViewCell",
                                                  for: indexPath) as? FormTableViewCell ??
             FormTableViewCell(style: .default, reuseIdentifier: "FormTableViewCell")
@@ -99,9 +99,9 @@ extension AddressFormViewController: UITableViewDataSource {
 }
 
 extension AddressFormViewController: UITextFieldDelegate {
-    
+
     func textFieldDidEndEditing(_ textField: UITextField) {
-        
+
         switch textField.tag {
         case 0:
             self.viewModel.country = textField.text ?? ""
@@ -121,4 +121,3 @@ extension AddressFormViewController: UITextFieldDelegate {
         }
     }
 }
-
