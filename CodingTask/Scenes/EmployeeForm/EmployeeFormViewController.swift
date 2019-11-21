@@ -187,7 +187,6 @@ extension EmployeeFormViewController: UITableViewDelegate {
 
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "AddressFormViewController") as! AddressFormViewController
             vc.viewModel = AddressFormViewModel(address: address)
-//            vc.viewModel.setValuesFromAddress(address)
             vc.viewModel.delegate = self.viewModel
             self.navigationController?.pushViewController(vc, animated: true)
         }
