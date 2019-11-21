@@ -14,7 +14,7 @@ protocol AddressFormViewModelDelegate: AnyObject {
 
 class AddressFormViewModel: BaseViewModel {
 
-    var address: Address?
+    private let address: Address?
     var country: String = ""
     var locality: String = ""
     var street: String = ""
@@ -23,9 +23,25 @@ class AddressFormViewModel: BaseViewModel {
     var postcode: String = ""
     weak var delegate: AddressFormViewModelDelegate?
 
-    func setValuesFromAddress(_ address: Address) {
+    init(address: Address?) {
 
-        self.address = address
+        if let address = address {
+            self.address = address
+            super.init()
+            self.setValuesFromAddress(address)
+        } else {
+            self.address = nil
+            super.init()
+        }
+    }
+
+    func getAddress() -> Address? {
+
+        return self.address
+    }
+
+    private func setValuesFromAddress(_ address: Address) {
+
         self.country = address.country ?? ""
         self.locality = address.locality ?? ""
         self.street = address.street ?? ""

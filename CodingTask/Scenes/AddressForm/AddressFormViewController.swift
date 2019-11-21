@@ -11,7 +11,7 @@ import UIKit
 class AddressFormViewController: BaseTableViewController {
 
     @IBOutlet var tableView: UITableView!
-    let viewModel = AddressFormViewModel()
+    var viewModel: AddressFormViewModel!
 
     override func viewDidLoad() {
             self.initControls()
@@ -21,7 +21,7 @@ class AddressFormViewController: BaseTableViewController {
 
         super.initCell(cell, indexPath: indexPath)
 
-        if self.viewModel.address != nil {
+        if self.viewModel.getAddress() != nil {
             self.initEditCell(cell, indexPath: indexPath)
         } else {
             self.initNewCell(cell, indexPath: indexPath)
@@ -50,7 +50,7 @@ class AddressFormViewController: BaseTableViewController {
 
     private func initEditCell(_ cell: FormTableViewCell, indexPath: IndexPath) {
 
-        guard let address = self.viewModel.address else {
+        guard let address = self.viewModel.getAddress() else {
             return
         }
 

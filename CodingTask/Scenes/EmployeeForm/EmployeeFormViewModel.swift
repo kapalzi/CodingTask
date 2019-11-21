@@ -10,12 +10,29 @@ import Foundation
 
 class EmployeeFormViewModel: BaseViewModel {
 
-    var employee: Employee?
+    private let employee: Employee?
     var firstName: String = ""
     var lastName: String = ""
     var age: Int16 = 0
     var gender: Int16 = 0
     var addresses: Set = Set<Address>()
+
+    init(employee: Employee?) {
+
+        if let employee = employee {
+            self.employee = employee
+            super.init()
+            self.setValuesFromEmployee(employee)
+        } else {
+            self.employee = nil
+            super.init()
+        }
+    }
+
+    func getEmployee() -> Employee? {
+
+        return self.employee
+    }
 
     func getAddressAtIndex(_ index: Int) -> Address? {
 
@@ -31,7 +48,7 @@ class EmployeeFormViewModel: BaseViewModel {
     }
 
     func setValuesFromEmployee(_ employee: Employee) {
-        self.employee = employee
+
         self.firstName = employee.firstName ?? ""
         self.lastName = employee.lastName ?? ""
         self.age = employee.age

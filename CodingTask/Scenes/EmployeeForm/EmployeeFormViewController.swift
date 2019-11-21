@@ -11,7 +11,7 @@ import UIKit
 class EmployeeFormViewController: BaseTableViewController {
 
     @IBOutlet var tableView: UITableView!
-    let viewModel = EmployeeFormViewModel()
+    var viewModel: EmployeeFormViewModel!
 
     override func viewDidLoad() {
 
@@ -26,7 +26,7 @@ class EmployeeFormViewController: BaseTableViewController {
 
         super.initCell(cell, indexPath: indexPath)
 
-        if self.viewModel.employee != nil {
+        if self.viewModel.getEmployee() != nil {
             self.initEditCell(cell, indexPath: indexPath)
         } else {
             self.initNewCell(cell, indexPath: indexPath)
@@ -54,7 +54,7 @@ class EmployeeFormViewController: BaseTableViewController {
 
     private func initEditCell(_ cell: FormTableViewCell, indexPath: IndexPath) {
 
-        guard let employee = self.viewModel.employee else {
+        guard let employee = self.viewModel.getEmployee() else {
             return
         }
 
@@ -176,6 +176,7 @@ extension EmployeeFormViewController: UITableViewDelegate {
 
         if self.isLastCell(atRow: indexPath.row) {
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "AddressFormViewController") as! AddressFormViewController
+            vc.viewModel = AddressFormViewModel(address: nil)
             vc.viewModel.delegate = self.viewModel
             self.navigationController?.pushViewController(vc, animated: true)
         }
@@ -185,8 +186,8 @@ extension EmployeeFormViewController: UITableViewDelegate {
             guard let address = self.viewModel.getAddressAtIndex(indexPath.row) else { return }
 
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "AddressFormViewController") as! AddressFormViewController
-
-            vc.viewModel.setValuesFromAddress(address)
+            vc.viewModel = AddressFormViewModel(address: address)
+//            vc.viewModel.setValuesFromAddress(address)
             vc.viewModel.delegate = self.viewModel
             self.navigationController?.pushViewController(vc, animated: true)
         }

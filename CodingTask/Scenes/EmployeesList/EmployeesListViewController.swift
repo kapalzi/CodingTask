@@ -40,12 +40,13 @@ class EmployeesListViewController: UIViewController {
     @objc private func showAddEmployee() {
 
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "EmployeeFormViewController") as! EmployeeFormViewController
+        vc.viewModel = EmployeeFormViewModel(employee: nil)
         self.navigationController?.pushViewController(vc, animated: true)
     }
 
     private func showDetails(ofEmployee employee: Employee) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "EmployeeFormViewController") as! EmployeeFormViewController
-        vc.viewModel.setValuesFromEmployee(employee)
+        vc.viewModel = EmployeeFormViewModel(employee: employee)
         self.navigationController?.pushViewController(vc, animated: true)
     }
 
