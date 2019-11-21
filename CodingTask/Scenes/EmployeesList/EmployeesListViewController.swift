@@ -19,8 +19,15 @@ class EmployeesListViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         self.initControls()
-        self.viewModel.getAllEmployees {
+        self.refreshView()
+    }
+
+    private func refreshView() {
+
+        DispatchQueue.main.async {
+            self.viewModel.getAllEmployees {
             self.tableView.reloadData()
+            }
         }
     }
 

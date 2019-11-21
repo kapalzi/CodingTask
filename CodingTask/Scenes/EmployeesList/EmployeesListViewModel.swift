@@ -44,7 +44,11 @@ class EmployeesListViewModel: BaseViewModel {
 
     func employeesCount() -> Int {
 
-        return self.employees.count
+        if let employees = self.employees {
+            return employees.count
+        } else {
+            return 0
+        }
     }
 
     func employeeAtIndex(index: Int) -> Employee {
